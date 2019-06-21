@@ -80,6 +80,33 @@
 				]
 			},
 			{
+				"begin": "\\$?<",
+				"beginCaptures": {
+					"0": {
+						"name": "punctuation.definition.string.begin.ate"
+					}
+				},
+				"end": ">",
+				"endCaptures": {
+					"0": {
+						"name": "punctuation.definition.string.end.ate"
+					}
+				},
+				"name": "string.quoted.angle.ate",
+				"patterns": [
+					{
+						"match": "\\\\[\\$`<\\\\\\n]",
+						"name": "constant.character.escape.ate"
+					},
+					{
+						"include": "#variable"
+					},
+					{
+						"include": "#interpolation"
+					}
+				]
+			},
+			{
 				"begin": "\\$'",
 				"beginCaptures": {
 					"0": {
