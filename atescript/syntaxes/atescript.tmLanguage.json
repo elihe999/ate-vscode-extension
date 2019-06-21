@@ -1,8 +1,6 @@
 {
 	"information_for_contributors": [
-		"This file has been converted from https://github.com/PowerShell/EditorSyntax/blob/master/PowerShellSyntax.tmLanguage",
-		"If you want to provide a fix or improvement, please create a pull request against the original repository.",
-		"Once accepted there, we are happy to receive an update request."
+		"This file has been converted from https://github.com/elihe999/ate-vscode-extension/tree/master/syntaxes/atescript.tmLanguage.json"
 	],
 	"version": "1",
 	"name": "atescript",
@@ -11,25 +9,138 @@
         {
             "include": "#keyword"
         },
-        {
+		{
+			"include": "#comments_context"
+		},
+		{
             "include": "#strings"
         }
 	],
 	"repository": {
 		"keyword": {
-            "patterns": [{
-                "match": "\\b(API|Syslog)\\b",
+            "patterns": [
+			{
+				"match": "\\b(API|Syslog|Pause|Run)\\b",
+                "name": "keyword.action.atescript"
+            },{
+				"match": "\\y(Include)\\y",
                 "name": "keyword.requires.atescript"
-            }]
+			}
+			]
         },
         "strings": {
-            "name": "constant.character.escape.atescript",
-            "begin": "\"",
-            "end": "\"",
-            "patterns": [{
-                    "name": "constant.character.escape.atescript",
-                    "match": "\\\"*\"\\y"
-            }]
-        }
+			"patterns": [
+			{
+				"match": "\\\\.",
+				"name": "constant.character.escape.ate"
+			},
+			{
+				"begin": "'",
+				"beginCaptures": {
+					"0": {
+						"name": "punctuation.definition.string.begin.ate"
+					}
+				},
+				"end": "'",
+				"endCaptures": {
+					"0": {
+						"name": "punctuation.definition.string.end.ate"
+					}
+				},
+				"name": "string.quoted.single.ate"
+			},
+			{
+				"begin": "\\$?\"",
+				"beginCaptures": {
+					"0": {
+						"name": "punctuation.definition.string.begin.ate"
+					}
+				},
+				"end": "\"",
+				"endCaptures": {
+					"0": {
+						"name": "punctuation.definition.string.end.ate"
+					}
+				},
+				"name": "string.quoted.double.ate",
+				"patterns": [
+					{
+						"match": "\\\\[\\$`\"\\\\\\n]",
+						"name": "constant.character.escape.ate"
+					},
+					{
+						"include": "#variable"
+					},
+					{
+						"include": "#interpolation"
+					}
+				]
+			},
+			{
+				"begin": "\\$'",
+				"beginCaptures": {
+					"0": {
+						"name": "punctuation.definition.string.begin.ate"
+					}
+				},
+				"end": "'",
+				"endCaptures": {
+					"0": {
+						"name": "punctuation.definition.string.end.ate"
+					}
+				},
+				"name": "string.quoted.single.dollar.ate",
+				"patterns": [
+					{
+						"match": "\\\\(a|b|e|f|n|r|t|v|\\\\|')",
+						"name": "constant.character.escape.ansi-c.ate"
+					},
+					{
+						"match": "\\\\[0-9]{3}",
+						"name": "constant.character.escape.octal.ate"
+					},
+					{
+						"match": "\\\\x[0-9a-fA-F]{2}",
+						"name": "constant.character.escape.hex.ate"
+					},
+					{
+						"match": "\\\\c.",
+						"name": "constant.character.escape.control-char.ate"
+					}
+				]
+			}
+		]
+        },
+		"comments_context": {
+			"begin": "(^\\s+)?(?<=^|\\W)(?<!-)(?=#)(?!#{)",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.whitespace.comment.leading.ate"
+				}
+			},
+			"end": "(?!\\G)",
+			"patterns": [
+				{
+					"begin": "#!",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.shebang.ate"
+						}
+					},
+					"end": "$",
+					"name": "comment.line.number-sign.shebang.ate"
+				},
+				{
+					"begin": "#",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.ate"
+						}
+					},
+					"end": "$",
+					"name": "comment.line.number-sign.ate"
+				}
+			]
+		}
     }
 }
