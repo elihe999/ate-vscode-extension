@@ -10,10 +10,16 @@
             "include": "#keyword"
         },
 		{
-			"include": "#comments_context"
+            "include": "#strings"
+        },
+        {
+            "include": "#loop"
 		},
 		{
-            "include": "#strings"
+            "include": "#support"
+        },
+        {
+            "include": "#comment"
         }
 	],
 	"repository": {
@@ -22,11 +28,8 @@
 			{
 				"match": "\\b(API|Syslog|Pause|Run)\\b",
                 "name": "keyword.action.atescript"
-            },{
-				"match": "\\y(Include)\\y",
-                "name": "keyword.requires.atescript"
-			}
-			]
+            }
+		]
         },
         "strings": {
 			"patterns": [
@@ -111,11 +114,67 @@
 			}
 		]
         },
-		"comments_context": {
+		"loop": {
+			"patterns": [
+				{
+					"begin": "(?<=^|;|&|\\s)If(?=\\s|;|&|$)",
+					"beginCaptures": {
+						"0": {
+							"name": "keyword.control.shell"
+						}
+					},
+					"end": "(?<=^|;|&|\\s)End(?=\\s|;|&|$)",
+					"endCaptures": {
+						"0": {
+							"name": "keyword.control.shell"
+						}
+					},
+					"name": "meta.scope.if-block.shell",
+					"patterns": [
+						{
+							"include": "$self"
+						}
+					]
+				},
+				{
+					"begin": "(?<=^|;|&|\\s)Error(?=\\s|;|&|$)",
+					"beginCaptures": {
+						"0": {
+							"name": "keyword.err.control.shell"
+						}
+					},
+					"end": "(?<=^|;|&|\\s)End(?=\\s|;|&|$)",
+					"endCaptures": {
+						"0": {
+							"name": "keyword.err.control.shell"
+						}
+					},
+					"name": "meta.scope.error-block.shell",
+					"patterns": [
+						{
+							"include": "$self"
+						}
+					]
+				}
+			]
+		},
+		"support": {
+			"patterns": [
+				{
+					"match": "(?<=^|;|&|\\s)(?::|\\.)(?=\\s|;|&|$)",
+					"name": "support.function.builtin.ate"
+				},
+				{
+					"match": "(?<=^|;|&|\\s)(?:Run|Deploy|Push|Vector|Var|Key|SoftKey|SCR|STA|AUD|CAP|LED|Requires)(?=\\s|;|&|$)",
+					"name": "support.function.builtin.ate"
+				}
+			]
+		},
+		"comment": {
 			"begin": "(^\\s+)?(?<=^|\\W)(?<!-)(?=#)(?!#{)",
 			"beginCaptures": {
 				"1": {
-					"name": "punctuation.whitespace.comment.leading.ate"
+					"name": "punctuation.whitespace.comment.leading.shell"
 				}
 			},
 			"end": "(?!\\G)",
@@ -124,21 +183,21 @@
 					"begin": "#!",
 					"beginCaptures": {
 						"0": {
-							"name": "punctuation.definition.comment.shebang.ate"
+							"name": "punctuation.definition.comment.shebang.shell"
 						}
 					},
 					"end": "$",
-					"name": "comment.line.number-sign.shebang.ate"
+					"name": "comment.line.number-sign.shebang.shell"
 				},
 				{
 					"begin": "#",
 					"beginCaptures": {
 						"0": {
-							"name": "punctuation.definition.comment.ate"
+							"name": "punctuation.definition.comment.shell"
 						}
 					},
 					"end": "$",
-					"name": "comment.line.number-sign.ate"
+					"name": "comment.line.number-sign.shell"
 				}
 			]
 		}

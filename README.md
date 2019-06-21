@@ -6,31 +6,19 @@
   </a>
 </p>
 
-> A template for vscode extension with vscode ext CLI
+> A template for vscode extension without vscode ext CLI
 
 ## Install
 
-```sh
-npm install
-```
+- unfinish : copy to source/folder
 
 ## Usage
-
-```sh
-null
-```
-
-## Run tests
-
-```sh
-null
-```
 
 ## Author
 
 👤 **blockgold eli**
 
-* Twitter: [@elihebbb](https://twitter.com/elihebbb)
+* Twitter: [@elihebbb](https://twitter.com/elihebb)   abandon
 * Github: [@elihe999](https://github.com/elihe999)
 
 ## Show your support
