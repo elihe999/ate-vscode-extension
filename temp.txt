@@ -1,0 +1,256 @@
+{
+	"information_for_contributors": [
+		"This file has been converted from https://github.com/elihe999/ate-vscode-extension/tree/master/syntaxes/atescript.tmLanguage.json"
+	],
+	"version": "1",
+	"name": "atescript",
+	"scopeName": "source.atescript",
+	"patterns": [{
+			"include": "#keyword"
+		},
+		{
+			"include": "#strings"
+		},
+		{
+			"include": "#loop"
+		},
+		{
+			"include": "#support"
+		},
+		{
+			"include": "#variable"
+		},
+		{
+			"include": "#comment"
+		}
+	],
+	"repository": {
+		"keyword": {
+			"patterns": [{
+				"match": "\\b(API|Syslog|Pause|Run)\\b",
+				"name": "keyword.action.atescript"
+			}]
+		},
+		"strings": {
+			"patterns": [{
+					"match": "\\\\.",
+					"name": "constant.character.escape.ate"
+				},
+				{
+					"begin": "'",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.ate"
+						}
+					},
+					"end": "'",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.ate"
+						}
+					},
+					"name": "string.quoted.single.ate"
+				},
+				{
+					"begin": "\\$?\"",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.ate"
+						}
+					},
+					"end": "\"",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.ate"
+						}
+					},
+					"name": "string.quoted.double.ate",
+					"patterns": [{
+							"match": "\\\\[\\$`\"\\\\\\n]",
+							"name": "constant.character.escape.ate"
+						},
+						{
+							"include": "#variable"
+						},
+						{
+							"include": "#interpolation"
+						}
+					]
+				},
+				{
+					"begin": "\\$?<",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.ate"
+						}
+					},
+					"end": ">",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.ate"
+						}
+					},
+					"name": "string.quoted.angle.ate",
+					"patterns": [{
+							"match": "\\\\[\\$`<\\\\\\n]",
+							"name": "constant.character.escape.ate"
+						},
+						{
+							"include": "#variable"
+						},
+						{
+							"include": "#interpolation"
+						}
+					]
+				},
+				{
+					"begin": "\\$'",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin.ate"
+						}
+					},
+					"end": "'",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end.ate"
+						}
+					},
+					"name": "string.quoted.single.dollar.ate",
+					"patterns": [{
+							"match": "\\\\(a|b|e|f|n|r|t|v|\\\\|')",
+							"name": "constant.character.escape.ansi-c.ate"
+						},
+						{
+							"match": "\\\\[0-9]{3}",
+							"name": "constant.character.escape.octal.ate"
+						},
+						{
+							"match": "\\\\x[0-9a-fA-F]{2}",
+							"name": "constant.character.escape.hex.ate"
+						},
+						{
+							"match": "\\\\c.",
+							"name": "constant.character.escape.control-char.ate"
+						}
+					]
+				}
+			]
+		},
+		"loop": {
+			"patterns": [{
+					"begin": "(?<=^|;|&|\\s)If(?=\\s|;|&|$)",
+					"beginCaptures": {
+						"0": {
+							"name": "keyword.control.ate"
+						}
+					},
+					"end": "(?<=^|;|&|\\s)End(?=\\s|;|&|$)",
+					"endCaptures": {
+						"0": {
+							"name": "keyword.control.ate"
+						}
+					},
+					"name": "meta.scope.if-block.ate",
+					"patterns": [{
+						"include": "$self"
+					}]
+				},
+				{
+					"begin": "(?<=^|;|&|\\s)Error(?=\\s|;|&|$)",
+					"beginCaptures": {
+						"0": {
+							"name": "keyword.err.control.ate"
+						}
+					},
+					"end": "(?<=^|;|&|\\s)End(?=\\s|;|&|$)",
+					"endCaptures": {
+						"0": {
+							"name": "keyword.err.control.ate"
+						}
+					},
+					"name": "meta.scope.error-block.ate",
+					"patterns": [{
+						"include": "$self"
+					}]
+				},
+				{
+					"begin": "(?<=^|;|&|\\s)Foreach(?=\\s|;|&|$)",
+					"beginCaptures": {
+						"0": {
+							"name": "keyword.for.control.ate"
+						}
+					},
+					"end": "(?<=^|;|&|\\s)End(?=\\s|;|&|$)",
+					"endCaptures": {
+						"0": {
+							"name": "keyword.for.control.ate"
+						}
+					},
+					"name": "meta.scope.for-block.ate",
+					"patterns": [{
+						"include": "$self"
+					}]
+				}
+			]
+		},
+		"support": {
+			"patterns": [{
+					"match": "(?<=^|;|&|\\s)(?::|\\.)(?=\\s|;|&|$)",
+					"name": "support.function.builtin.ate"
+				},
+				{
+					"match": "(?<=^|;|&|\\s)(?:Run|Deploy|Push|Vector|Var|Key|SoftKey|SCR|STA|AUD|CAP|LED|Requires)(?=\\s|;|&|$)",
+					"name": "support.function.builtin.ate"
+				}
+			]
+		},
+		"comment": {
+			"begin": "(^\\s+)?(?<=^|\\W)(?<!-)(?=#)(?!#{)",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.whitespace.comment.leading.ate"
+				}
+			},
+			"end": "(?!\\G)",
+			"patterns": [{
+					"begin": "#!",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.shebang.ate"
+						}
+					},
+					"end": "$",
+					"name": "comment.line.number-sign.shebang.ate"
+				},
+				{
+					"begin": "#",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.ate"
+						}
+					},
+					"end": "$",
+					"name": "comment.line.number-sign.ate"
+				}
+			]
+		},
+		"variable": {
+			"patterns": [{
+				"begin": "\\${",
+				"beginCaptures": {
+					"0": {
+						"name": "punctuation.definition.variable.ate"
+					}
+				},
+				"end": "}",
+				"endCaptures": {
+					"0": {
+						"name": "punctuation.definition.variable.ate"
+					}
+				},
+				"name": "variable.other.bracket.ate"
+			}]
+		}
+	}
+}
