@@ -1,14 +1,14 @@
 {
     "name": "vscode-plugin-demo",
     "displayName": "vscode-plugin-demo",
-    "description": "VSCode插件demo",
+    "description": "VSCode ate plugin demo",
     "keywords": [
         "vscode",
         "plugin",
         "demo"
     ],
     "version": "1.0.3",
-    "publisher": "sxei",
+    "publisher": "gstester",
     "engines": {
         "vscode": "^1.27.0"
     },
@@ -17,7 +17,7 @@
     ],
     "icon": "images/icon.png",
     "activationEvents": [
-        "*"
+        "onLanguage:gsate"
     ],
     "main": "./src/extension",
     "contributes": {
@@ -37,6 +37,26 @@
                 }
             }
         },
+        "languages": [
+            {
+                "id": "gsate",
+                "aliases": [
+                    "ate",
+                    "Ate"
+                ],
+                "extensions": [
+                    ".gsate"
+                ],
+                "configuration": "./gsate.configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "gsate",
+                "scopeName": "source.gsate",
+                "path": "./syntaxes/gsate.tmGrammer"
+            }
+        ],
         "commands": [
             {
                 "command": "extension.sayHello",
@@ -132,14 +152,18 @@
             {
                 "language": "html",
                 "path": "./snippets/html.json"
+            },
+            {
+                "language": "gsate",
+                "path": "./snippets/html.json"
             }
         ],
         "viewsContainers": {
             "activitybar": [
                 {
                     "id": "beautifulGirl",
-                    "title": "美女",
-                    "icon": "images/beautifulGirl.svg"
+                    "title": "ate",
+                    "icon": "images/cat-icon-grandstream-ip-phones.svg"
                 }
             ]
         },
@@ -147,7 +171,7 @@
             "beautifulGirl": [
                 {
                     "id": "beautifulGirl1",
-                    "name": "国内美女"
+                    "name": "test1"
                 },
                 {
                     "id": "beautifulGirl2",
@@ -155,7 +179,7 @@
                 },
                 {
                     "id": "beautifulGirl3",
-                    "name": "人妖"
+                    "name": "test2"
                 }
             ]
         },
