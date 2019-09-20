@@ -6,8 +6,13 @@
       "patterns": [{ "include": "#letter" }, { "include": "#paren-expression" }]
     },
     "letter": {
-      "match": "a|b|c",
-      "name": "keyword.letter"
+      "match": "(API|Syslog|Deploy|Run|Request)",
+      "name": "keyword.letter",
+      "include": "#letter-param"
+    },
+    "letter-param": {
+      "match": "aaa",
+      "name": "variable.other.bracket.ate"
     },
     "paren-expression": {
       "begin": "\\(",
