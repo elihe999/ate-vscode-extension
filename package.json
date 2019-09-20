@@ -37,30 +37,10 @@
                 }
             }
         },
-        "languages": [
-            {
-                "id": "gsate",
-                "aliases": [
-                    "ate",
-                    "Ate"
-                ],
-                "extensions": [
-                    ".gsate"
-                ],
-                "configuration": "./gsate.configuration.json"
-            }
-        ],
-        "grammars": [
-            {
-                "language": "gsate",
-                "scopeName": "source.gsate",
-                "path": "./syntaxes/gsate.tmGrammer"
-            }
-        ],
         "commands": [
             {
                 "command": "extension.sayHello",
-                "title": "Hello，小茗同学"
+                "title": "Hello, tester"
             },
             {
                 "command": "extension.demo.getCurrentFilePath",
@@ -189,6 +169,19 @@
                 "label": "测试图标主题",
                 "path": "./theme/icon-theme.json"
             }
+        ],
+        "languages": [
+        {
+            "id": "gsate",
+            "extensions": [".gsate"]
+        }
+        ],
+        "grammars": [
+        {
+            "language": "gsate",
+            "scopeName": "source.gsate",
+            "path": "./syntaxes/gsate.tmGrammar.json"
+        }
         ]
     },
     "scripts": {
