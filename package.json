@@ -137,24 +137,24 @@
         "viewsContainers": {
             "activitybar": [
                 {
-                    "id": "beautifulGirl",
+                    "id": "testCase",
                     "title": "ate",
                     "icon": "images/cat-icon-grandstream-ip-phones.svg"
                 }
             ]
         },
         "views": {
-            "beautifulGirl": [
+            "testCase": [
                 {
-                    "id": "beautifulGirl1",
+                    "id": "test1",
                     "name": "test1"
                 },
                 {
-                    "id": "beautifulGirl2",
-                    "name": "国外美女"
+                    "id": "test2",
+                    "name": "test2"
                 },
                 {
-                    "id": "beautifulGirl3",
+                    "id": "test",
                     "name": "test2"
                 }
             ]

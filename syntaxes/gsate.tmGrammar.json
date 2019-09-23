@@ -28,8 +28,75 @@
                 },
                 {
                     "include": "#member_access"
+                },
+                {
+                    "include": "#comment"
                 }
             ]
+        },
+        "comments": {
+            "patterns": [
+                {
+                    "includes": "#comments-base"
+                }
+            ]
+        },
+        "comment": {
+             "begin": "(^\\s+)?(?<=^|\\W)(?<!-)(?=#)(?!#{)",
+             "beginCaptures": {
+                 "1": {
+                     "name": "punctuation.whitespace.comment.leading.ate"
+                 }
+             },
+             "end": "(?!\\G)",
+             "patterns": [
+                 {
+                     "begin": "#!",
+                     "beginCaptures": {
+                         "0": {
+                             "name": "punctuation.definition.comment.shebang.ate"
+                         }
+                     },
+                     "end": "$",
+                     "name": "comment.line.number-sign.shebang.ate"
+                 },
+                 {
+                     "begin": "#",
+                     "beginCaptures": {
+                         "0": {
+                             "name": "punctuation.definition.comment.ate"
+                         }
+                     },
+                     "end": "$",
+                     "name": "comment.line.number-sign.ate"
+                 },
+                 {
+                     "include": "#codetags"
+                 }
+             ]
+        },
+        "comments-base": {
+            "name": "comment.line.number-sign.ate",
+            "begin": "(\\#)",
+            "beginCaptures": {
+                "1": {
+                    "name": "punctuation.definition.comment.ate"
+                }
+            },
+            "end": "($)",
+            "patterns": [
+                {
+                    "include": "#codetags"
+                }
+            ]
+        },
+        "codetags": {
+            "match": "(?:\\b(NOTE|XXX|HACK|FIXME|BUG|TODO)\\b)",
+            "captures": {
+                "1": {
+                    "name": "keyword.codetag.notation.ate"
+                }
+            }
         },
         "letter": {
             "match": "(API|Syslog|Deploy|Run|Request)",
