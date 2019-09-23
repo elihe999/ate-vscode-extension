@@ -126,16 +126,12 @@
         },
         "snippets": [
             {
-                "language": "javascript",
-                "path": "./snippets/javascript.json"
-            },
-            {
-                "language": "html",
-                "path": "./snippets/html.json"
+                "language": "gsate",
+                "path": "./snippets/sip.json"
             },
             {
                 "language": "gsate",
-                "path": "./snippets/html.json"
+                "path": "./snippets/ate.json"
             }
         ],
         "viewsContainers": {
@@ -171,17 +167,18 @@
             }
         ],
         "languages": [
-        {
-            "id": "gsate",
-            "extensions": [".gsate"]
-        }
+            {
+                "id": "gsate",
+                "extensions": [".gsate"],
+                "configuration": "./gsate.configuration.json"
+            }
         ],
         "grammars": [
-        {
-            "language": "gsate",
-            "scopeName": "source.gsate",
-            "path": "./syntaxes/gsate.tmGrammar.json"
-        }
+            {
+                "language": "gsate",
+                "scopeName": "source.gsate",
+                "path": "./syntaxes/gsate.tmGrammar.json"
+            }
         ]
     },
     "scripts": {

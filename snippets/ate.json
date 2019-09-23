@@ -1,0 +1,77 @@
+{
+    "forLoop": {
+        "prefix": "foreach",
+        "body": [
+          "Foreach ${1:item} as ${2:array} ",
+          "\t$3",
+          "End"
+        ],
+        "description": "forLoop"
+    },
+    "ifLoop$equal": {
+        "prefix": "ifequal",
+        "body": [
+          "If ${1:parameter} equal \"${2:string}\"",
+          "\t${3}",
+          "End"
+        ],
+        "description": "forLoop"
+    },
+    "ifLoop$unequal": {
+        "prefix": "ifun",
+        "body": [
+          "If ${1:parameter} unequal \"${2:string}\"",
+          "\t${3}",
+          "End"
+        ],
+        "description": "forLoop"
+    },
+    "errorLoop": {
+        "prefix": "Error",
+        "body": [
+          "Error",
+          "\tVar picName = \"Error picture\"",
+          "\tForeach ${1:item} as ${2:array} ",
+          "\t\t$3",
+          "\tEnd",
+          "End"
+        ],
+        "description": "errorLoop"
+    },
+    "syslogPre$AUD": {
+        "prefix": "syslog:AUD",
+        "body": [
+            "Syslog:AUD ${1:target} \"${2:string}\""
+        ]
+    },
+    "syslogPre$CAP": {
+        "prefix": "syslog:CAP",
+        "body": [
+            "Syslog:CAP ${1:target} \"${2:string}\""
+        ]
+    },
+    "syslogPre$LED": {
+        "prefix": "syslog:LED",
+        "body": [
+            "Syslog:LED ${1:target} \"${2:string}\""
+        ]
+    },
+    "syslogPre$SCR": {
+        "prefix": "syslog:SCR",
+        "body": [
+            "Syslog:SCR ${1:target} \"${2:string}\""
+        ]
+    },
+    "syslogPre$STA": {
+        "prefix": "syslog:STA",
+        "body": [
+            "Syslog:STA ${1:target} \"${2:string}\""
+        ]
+    },
+    "pause$time": {
+        "prefix": "Pause",
+        "body": [
+            "Pause ${1:timeMicrosecond}"
+        ]
+    }
+}
