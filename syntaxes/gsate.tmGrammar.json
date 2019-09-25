@@ -99,7 +99,7 @@
             }
         },
         "letter": {
-            "match": "(API|Syslog|Deploy|Run|Request)",
+            "match": "(API|Syslog|Deploy|Run|Request|Console|String|Picture)",
             "name": "keyword.letter"
         },
         "paren-expression": {

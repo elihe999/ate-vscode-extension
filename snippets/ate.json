@@ -8,6 +8,12 @@
         ],
         "description": "forLoop"
     },
+    "vectorList": {
+        "prefix": "Vector",
+        "body": [
+            "Vector ${1:vector name} = {${2:item}}"
+        ]
+    },
     "ifLoop$equal": {
         "prefix": "ifequal",
         "body": [
@@ -69,9 +75,33 @@
         ]
     },
     "pause$time": {
-        "prefix": "Pause",
+        "prefix": "Pa",
         "body": [
             "Pause ${1:timeMicrosecond}"
+        ]
+    },
+    "init$device": {
+        "prefix": "API:Init",
+        "body": [
+            "API:Init ${1:device}"
+        ]
+    },
+    "keys$device": {
+        "prefix": "API:Key",
+        "body": [
+            "API:Key ${1:device} \"${2:action}\" <${3:note}>"
+        ]
+    },
+    "softkey$device": {
+        "prefix": "API:SoftKey",
+        "body": [
+            "API:SoftKey ${1:device} \"${2:action}\" <${3:note}>"
+        ]
+    },
+    "reset$device": {
+        "prefix": "API:Reset",
+        "body": [
+            "API:Reset ${1:device}>"
         ]
     }
 }
