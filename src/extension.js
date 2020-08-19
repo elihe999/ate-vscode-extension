@@ -6,10 +6,10 @@ const vscode = require('vscode');
  */
 exports.activate = function(context) {
     console.log(vscode);
-    // require('./helloword')(context); // helloworld
+    require('./helloword')(context); // helloworld
     // require('./test-command-params')(context); // 测试命令参数
     // require('./test-menu-when')(context); // 测试菜单when命令
-    // require('./jump-to-definition')(context); // 跳转到定义
+    require('./jump-to-definition')(context); // 跳转到定义
     require('./completion')(context); // 自动补全
     require('./hover')(context); // 悬停提示
     // require('./webview')(context); // Webview

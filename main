@@ -1,0 +1,74 @@
+Include "./device"
+Include "../lib/initialize"
+Include "../lib/ipCallEnable"
+
+Vector deviceList = {device1, device2}
+Run "../lib/initialize" deviceList
+
+Run "../lib/ipCallEnable" device1
+Pause 1000
+API:I
+String:Transform
+Var targetIp = device2.ip
+String:DialStr targetIp
+String:Replace targetIp "." "STAR"
+API:Key device1 targetIp
+Pause 8500
+API:Key device1 "POUND"
+Pause 1000
+
+Var targetPort = device2.port
+String:DialStr targetPort
+Console:Log Normal targetPort
+API:Key device1 targetPort
+Pause 4800
+
+API:SoftKey device1 "Dial"
+Syslog:STA device1 "CALLING"
+Syslog:STA device2 "RINGING"
+Syslog:AUD device1 "AUD_RING_BACK"
+Syslog:AUD device2 "AUD_RINGING"
+Pause 2000
+
+API:SoftKey device2 "Answer"
+Syslog:STA device1 "CONNECTED"
+Syslog:STA device2 "CONNECTED"
+
+Pause 2000
+
+API:SoftKey device1 "EndCall"
+Syslog:SCR device1 "IDLE"
+
+Pause 3000
+
+Run "../lib/ipCallEnable" device2
+
+targetIp = device1.ip
+String:DialStr targetIp
+String:Replace targetIp "." "STAR"
+API:Key device2 targetIp
+Pause 8500
+API:Key device2 "POUND"
+Pause 1000
+targetPort = device1.port
+String:DialStr targetPort
+API:Key device2 targetPort
+Pause 4800
+
+API:SoftKey device2 "Dial"
+Syslog:STA device2 "CALLING"
+Pause 2000
+
+API:SoftKey device1 "Answer"
+Syslog:STA device2 "CONNECTED"
+Syslog:STA device1 "CONNECTED"
+
+Pause 2000
+
+API:SoftKey device2 "EndCall"
+Syslog:SCR device2 "IDLE"
+
+Pause 2000
+
+API:Reset device1
+API:Reset device2

@@ -16,13 +16,17 @@ function provideHover(document, position, token) {
         case 'API':
             return new vscode.Hover(`* **${word}**：\n* **Action**`);
         case 'Syslog':
-            return new vscode.Hover(`* **${word}**：\n* **Check**`);
+            return new vscode.Hover(`* **${word}**：\n* **Check syslog from target device**`);
         case 'Run':
-            return new vscode.Hover(`* **${word}**：\n* **Action**`);
-        case 'Puase':
-            return new vscode.Hover(`* **${word}**：\n* **Action**`);
+            return new vscode.Hover(`* **${word}**：\n* **Run a script**`);
+        case 'Pause':
+            return new vscode.Hover(`* **${word}**：\n* **Pause msec**`);
         case 'Var':
-            return new vscode.Hover(`* **${word}**：\n* **Define**`);
+            return new vscode.Hover(`* **${word}**：\n* **Define parameter**`);
+        case 'String:DialStr':
+            return new vscode.Hover(`* **${word}**: \n* **DialStr use to transform DialKey API value to normal string** \n* ** e.g 1:1:1 -> 111**`);
+        case 'Vector':
+            return new vscode.Hover(`* **${word}**：\n* **Stack one or more parameters into a vector**`);
     }
 }
 

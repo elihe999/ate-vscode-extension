@@ -27,8 +27,8 @@
             "properties": {
                 "vscodePluginDemo.yourName": {
                     "type": "string",
-                    "default": "guest",
-                    "description": "你的名字"
+                    "default": "tester",
+                    "description": "Your Name"
                 },
                 "vscodePluginDemo.showTip": {
                     "type": "boolean",

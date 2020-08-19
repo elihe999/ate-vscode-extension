@@ -3,7 +3,7 @@
         "prefix": "foreach",
         "body": [
           "Foreach ${1:item} as ${2:array} ",
-          "\t$3",
+          "\t${3:code}",
           "End"
         ],
         "description": "forLoop"
@@ -17,8 +17,8 @@
     "ifLoop$equal": {
         "prefix": "ifequal",
         "body": [
-          "If ${1:parameter} equal \"${2:string}\"",
-          "\t${3}",
+          "If ${1:parameter} equal \"${2:string}\":",
+          "\t${3:code}",
           "End"
         ],
         "description": "forLoop"
@@ -26,8 +26,8 @@
     "ifLoop$unequal": {
         "prefix": "ifun",
         "body": [
-          "If ${1:parameter} unequal \"${2:string}\"",
-          "\t${3}",
+          "If ${1:parameter} unequal \"${2:string}\":",
+          "\t${3:code}",
           "End"
         ],
         "description": "forLoop"
@@ -38,7 +38,7 @@
           "Error",
           "\tVar picName = \"Error picture\"",
           "\tForeach ${1:item} as ${2:array} ",
-          "\t\t$3",
+          "\t\t${3:code}",
           "\tEnd",
           "End"
         ],
@@ -75,7 +75,7 @@
         ]
     },
     "pause$time": {
-        "prefix": "Pa",
+        "prefix": "Pause",
         "body": [
             "Pause ${1:timeMicrosecond}"
         ]
@@ -101,7 +101,37 @@
     "reset$device": {
         "prefix": "API:Reset",
         "body": [
-            "API:Reset ${1:device}>"
+            "API:Reset <${1:device}>"
+        ]
+    },
+    "deploy$device": {
+        "prefix": "Deploy",
+        "body": [
+            "Deploy ${1:device} \"${2:filename}\""
+        ]
+    },
+    "string$Transform": {
+        "prefix": "String:T",
+        "body": [
+            "String:Transform ${1:string} ${2:number}"
+        ]
+    },
+    "string$Append": {
+        "prefix": "String:A",
+        "body": [
+            "String:Append ${1:string} ${2:number}"
+        ]
+    },
+    "string$DialStr": {
+        "prefix": "String:D",
+        "body": [
+            "String:DialStr ${1:string} ${2:number}"
+        ]
+    },
+    "string$Replace": {
+        "prefix": "String:R",
+        "body": [
+            "String:Replace ${1:string} ${2:number}"
         ]
     }
 }
