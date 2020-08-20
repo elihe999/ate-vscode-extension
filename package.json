@@ -147,11 +147,11 @@
             "testCase": [
                 {
                     "id": "test1",
-                    "name": "test1"
+                    "name": "Basic Call"
                 },
                 {
                     "id": "test2",
-                    "name": "test2"
+                    "name": "Configure"
                 }
             ]
         },

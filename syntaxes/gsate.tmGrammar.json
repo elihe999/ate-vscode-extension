@@ -99,20 +99,15 @@
             }
         },
         "letter": {
-            "match": "(API|Syslog|Deploy|Run|Request|Console|String|Picture)",
+            "match": "\\s*(API|Syslog|Deploy|Run|Request|Console|String|Picture|XML|Vector|Region|Resume|Block|Scenario|VirtualDevice|Sip|Session|Number|Push|Thread)",
             "name": "keyword.letter"
         },
         "paren-expression": {
-            "begin": "\\(",
-            "end": "\\)",
+            "begin": "\\s(?:String|API)\\s*",
+            "end": "\\s*((?=:)|(?=;))",
             "beginCaptures": {
-                "0": {
-                    "name": "punctuation.paren.open"
-                }
-            },
-            "endCaptures": {
-                "0": {
-                    "name": "punctuation.paren.close"
+                "1": {
+                    "name": "keyword.definition.keyword.ate"
                 }
             },
             "name": "expression.group",
@@ -232,7 +227,7 @@
         },
         "keyword": {
             "patterns": [{
-                    "match": "(?<=^|;|&|\\s)(then|else|elif|fi|for|in|do|done|select|case|continue|esac|while|until|return|If|Foreach|End|Error)(?=\\s|;|&|$)",
+                    "match": "(?<=^|;|&|\\s)(then|else|elif|fi|for|in|do|done|select|case|continue|esac|while|until|return|If|Foreach|End|Error|equal|unequal|and|or|as)(?=\\s|;|&|$)",
                     "name": "keyword.control.ate"
                 },
                 {
@@ -288,7 +283,7 @@
                     }]
                 },
                 {
-                    "begin": "(?<=^|;|&|\\s)(while|until)(?=\\s|;|&|$)",
+                    "begin": "(?<=^|;|&|\\s)(While|until)(?=\\s|;|&|$)",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.ate"
@@ -306,64 +301,40 @@
                     }]
                 },
                 {
-                    "begin": "(?<=^|;|&|\\s)(select)\\s+((?:[^\\s\\\\]|\\\\.)+)(?=\\s|;|&|$)",
+                    "begin": "(?<=^|;|&|\\s)(While)\\s+(.+?)\\s+(unequal:|equal:)(?=\\s|;|&|$)",
                     "beginCaptures": {
                         "1": {
                             "name": "keyword.control.ate"
-                        },
-                        "2": {
-                            "name": "variable.other.loop.ate"
                         }
                     },
-                    "end": "(?<=^|;|&|\\s)(done)(?=\\s|;|&|$)",
+                    "end": "(?<=^|;|&|\\s)End(?=\\s|;|&|$)",
                     "endCaptures": {
-                        "1": {
+                        "0": {
                             "name": "keyword.control.ate"
                         }
                     },
-                    "name": "meta.scope.select-block.ate",
+                    "name": "meta.scope.while-loop.ate",
                     "patterns": [{
                         "include": "$self"
                     }]
                 },
                 {
-                    "begin": "(?<=^|;|&|\\s)case(?=\\s|;|&|$)",
+                    "begin": "(?<=^|;|&|\\s)(Device)\\s+(.+?)",
                     "beginCaptures": {
-                        "0": {
+                        "1": {
                             "name": "keyword.control.ate"
                         }
                     },
-                    "end": "(?<=^|;|&|\\s)esac(?=\\s|;|&|$)",
+                    "end": "(?<=^|;|&|\\s)done(?=\\s|;|&|$)",
                     "endCaptures": {
                         "0": {
                             "name": "keyword.control.ate"
                         }
                     },
-                    "name": "meta.scope.case-block.ate",
+                    "name": "meta.scope.while-loop.ate",
                     "patterns": [{
-                            "begin": "(?<=^|;|&|\\s)in(?=\\s|;|&|$)",
-                            "beginCaptures": {
-                                "0": {
-                                    "name": "keyword.control.ate"
-                                }
-                            },
-                            "end": "(?<=^|;|&|\\s)(?=esac(\\s|;|&|$))",
-                            "name": "meta.scope.case-body.ate",
-                            "patterns": [{
-                                    "include": "#comment"
-                                },
-                                {
-                                    "include": "#case-clause"
-                                },
-                                {
-                                    "include": "$self"
-                                }
-                            ]
-                        },
-                        {
-                            "include": "$self"
-                        }
-                    ]
+                        "include": "$self"
+                    }]
                 },
                 {
                     "begin": "(?<=^|;|&|\\s)If(?=\\s|;|&|$)",

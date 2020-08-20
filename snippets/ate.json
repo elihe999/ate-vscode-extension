@@ -2,7 +2,7 @@
     "forLoop": {
         "prefix": "foreach",
         "body": [
-          "Foreach ${1:item} as ${2:array} ",
+          "Foreach ${1:item} as ${2:array}",
           "\t${3:code}",
           "End"
         ],
@@ -22,6 +22,21 @@
           "End"
         ],
         "description": "forLoop"
+    },
+    "Region$name": {
+        "prefix": "Region",
+        "body": [
+          "Region ${1:parameter}",
+          "\t${1:name} = ${2:width} ${3:height} ${4:x} ${5:y}",
+          "End"
+        ],
+        "description": "Screen capture Region"
+    },
+    "include": {
+        "prefix": "Include",
+        "body": [
+            "Include \"${1:script}\""
+        ]
     },
     "ifLoop$unequal": {
         "prefix": "ifun",
@@ -111,27 +126,97 @@
         ]
     },
     "string$Transform": {
-        "prefix": "String:T",
+        "prefix": "String:Transform",
         "body": [
             "String:Transform ${1:string} ${2:number}"
         ]
     },
     "string$Append": {
-        "prefix": "String:A",
+        "prefix": "String:Append",
         "body": [
             "String:Append ${1:string} ${2:number}"
         ]
     },
+    "string$Substr": {
+        "prefix": "String:Substr",
+        "body": [
+            "String:Substr ${1:string} ${2:begin} ${3:end}"
+        ]
+    },
     "string$DialStr": {
-        "prefix": "String:D",
+        "prefix": "String:DialStr",
         "body": [
             "String:DialStr ${1:string} ${2:number}"
         ]
     },
     "string$Replace": {
-        "prefix": "String:R",
+        "prefix": "String:Replace",
         "body": [
             "String:Replace ${1:string} ${2:number}"
+        ]
+    },
+    "number$Add": {
+        "prefix": "Number:Add",
+        "body": [
+            "Number:Add ${1:param} ${2:number}"
+        ]
+    },
+    "number:$Transform": {
+        "prefix": "Number:Transform",
+        "body": [
+            "Number:Transform ${1:newparam} ${2:string}"
+        ]
+    },
+    "reboot$Device": {
+        "prefix": "API:Reboot",
+        "body": [
+            "API:Reboot ${1:device}"
+        ]
+    },
+    "config$TFTP": {
+        "prefix": "API:Config",
+        "body": [
+            "API:Reboot ${1:device} serverURL",
+            "API:Reboot ${1:device} ${2:CustomURL"
+        ]
+    },
+    "capture:$Device": {
+        "prefix": "API:Capture",
+        "body": [
+            "API:Capture ${1:device} ${2:pictureName}"
+        ]
+    },
+    "Request:$Device": {
+        "prefix": "Request:",
+        "body": [
+            "Request:${1:param} ${2:device} ${3:Pvalue}"
+        ]
+    },
+    "Run:$Script": {
+        "prefix": "Run ",
+        "body": [
+            "Run \"{1:filename}\" ${2:param}"
+        ]
+    },
+    "Console:$Stop": {
+        "prefix": "Console:Stop",
+        "body": [
+            "Console:Stop ThisCase",
+            "Console:Stop ThisLoop"
+        ]
+    },
+    "Console:$Log": {
+        "prefix": "Console:Log",
+        "body": [
+            "Console:Log Normal ${1:param}",
+            "Console:Log Warning ${1:param}",
+            "Console:Log Error ${1:param}"
+        ]
+    },
+    "arp:$scan": {
+        "prefix": "Console:Arp",
+        "body": [
+            "Console:ArpScan\n"
         ]
     }
 }
